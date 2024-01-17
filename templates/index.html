@@ -1,0 +1,49 @@
+{% from 'bootstrap5/form.html' import render_form, render_form_row, render_field %}
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  <div class="mt-2 card">
+    <div class="card-header">{{CONSTS.intro | safe}}</div>
+    <div class="card-body">
+      <p>
+        {{CONSTS.body | safe}}
+      </p>
+      <p>
+        {{CONSTS.conclusion | safe}}
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-2 card" id="faq">
+    <div class="card-header">FAQ</div>
+    <div class="card-body">
+      <ol>
+        {% for faq in CONSTS.faqs %}
+          <li>
+            {{faq[0] | safe}}
+            <p class="ms-2 font_color_shaded">{{faq[1] | safe}}</p>
+          </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+
+  <div class="mt-2 card" id="contact">
+    <div class="card-header">Contact</div>
+    <div class="card-body">
+      <p>
+        {{CONSTS.contact | safe}}
+      </p>
+      <div class="container">
+        <form id="main_form" action="/" method="post" novalidate=True>
+          {{ form.csrf_token() }}
+          {{ render_form_row([form.name, form.email]) }}
+          {{ render_form_row([form.message]) }}
+          {{ render_form_row([form.submit], button_style="btn btn-md btn-primary mt-2") }}
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

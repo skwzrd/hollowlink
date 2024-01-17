@@ -1,0 +1,29 @@
+{% from 'bootstrap5/form.html' import render_form %}
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  {% if not logged_in %}
+    <div class="mt-2 card">
+      <div class="card-header d-flex justify-content-between">
+        <div>User Login</div>
+        <div>Don't have an account yet? <a href="{{url_for('bp_user.user_create')}}" class="font_color_highlight">Create one</a></div>
+      </div>
+      <div class="card-body">
+        {{render_form(form, action="/login", method="post", novalidate=True, id="login_form", button_style="btn btn-md btn-primary mt-2")}}
+      </div>
+    </div>
+  {% else %}
+    <div class="mt-2 card">
+      <div class="card-header d-flex justify-content-between">
+        <div>User already logged in</div>
+      </div>
+      <div class="card-body">
+        <form action="{{ url_for('bp_auth.logout') }}">
+          <button class="btn btn-primary" type="submit">Log out</button>
+        </form>
+      </div>
+    </div>
+  {% endif %}
+
+{% endblock %}

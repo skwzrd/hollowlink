@@ -1,0 +1,73 @@
+:root {
+  --font_color: #000000;
+  --font_color_shaded: #3a3a3a;
+  --font_color_highlight: #06b382;
+  --background: #cccccc;
+}
+
+.font_color {
+  color: var(--font_color) !important;
+  border-color: var(--font_color) !important;
+  background: var(--background) !important;
+}
+
+.font_color_shaded {
+  color: var(--font_color_shaded) !important;
+  border-color: var(--font_color_shaded) !important;
+}
+
+.font_color_highlight {
+  color: var(--font_color_highlight) !important;
+  border-color: var(--font_color_highlight) !important;
+}
+
+body {
+  font-family: Segoe UI, sans-serif;
+  font-size: 12pt;
+  max-width: 1600px;
+  margin: 2rem;
+}
+
+a {
+  color: var(--font_color);
+  margin: 0 !important;
+}
+
+a:visited {
+  color: var(--font_color);
+}
+
+a:hover {
+  color: var(--font_color);
+}
+
+a.btn > svg {
+  color: white;
+}
+
+a.btn > svg :visited {
+  color: white;
+}
+
+a.btn > svg :hover {
+  color: white;
+}
+
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: var(--background);
+  margin-top: 5px;
+  max-width: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--font_color);
+}
+
+html,
+body{
+  color-scheme: var(--font_color) !important;
+  background-color: var(--background) !important;
+  color: var(--font_color) !important;
+  border-color: var(--font_color);
+}

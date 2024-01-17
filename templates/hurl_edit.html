@@ -1,0 +1,25 @@
+{% from 'bootstrap5/form.html' import render_form %}
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="mt-2 card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <div class="pt-2">
+                    {{hurl.name}} #{{hurl.id}}
+                </div>
+                <div>
+                    {% include 'hurl_delete_button.html' %}
+                    {% include 'hurl_delete_script.html' %}
+                </div>
+            </div>
+            {% include 'hurl_copy.html' %}
+        </div>
+
+        <div class="card-body">
+            {{render_form(form, action="/hurl_edit/{}".format(hurl.id), method="post", novalidate=True, id="main_form", button_style="btn btn-md btn-primary mt-2")}}
+        </div>
+    </div>
+
+{% endblock %}

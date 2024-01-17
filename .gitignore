@@ -1,0 +1,6 @@
+__pycache__/
+venv/
+*.xcf
+*.db
+secret.txt
+configs.py

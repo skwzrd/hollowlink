@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="mt-2 card">
+        <div class="card-header">
+            {{ header }}
+        </div>
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table">
+                    {% if items %}
+                        <thead>
+                            <tr>
+                                {% for a in attributes %}
+                                    <th>{{a}}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                                <tr>
+                                    {% for a in attributes %}
+                                        <td>{{ item[a] }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    {% else %}
+                        Nothing here yet
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+Flask>=3
+sqlalchemy>=2
+bootstrap-flask
+flask-sqlalchemy
+flask-wtf
+gunicorn
+Flask-Limiter[redis]>=3.5.0

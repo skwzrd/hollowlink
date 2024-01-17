@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="mt-2 card">
+        <div class="card-header">
+            {% if header %}
+                {{header}}
+            {% else %}
+                Hurls
+            {% endif %}
+        </div>
+        <div class="card-body">
+            {% if hurls %}
+                <div class="table-responsive">
+                    <table class="table table-sm align-middle p-2 table-borderless">
+                        <thead>
+                            <tr>
+                                <th class="col-1 text-center">Delete</th>
+                                <th class="col-1 text-center">Edit</th>
+                                <th class="text-center">Reads</th>
+                                <th class="text-center">Active</th>
+                                <th class="text-left">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for hurl in hurls %}
+                                <tr>
+                                    <td class="col-1 text-center">
+                                        {% include 'hurl_delete_button.html' %}
+                                    </td>
+                                    <td class="col-1 text-center">
+                                        {% include 'hurl_edit_link.html' %}
+                                    </td>
+                                    <td class="col-1 text-center">
+                                        {{hurl.read_count}}
+                                    </td>
+                                    <td class="col-1 text-center">
+                                        {% if hurl.is_active %}
+                                            {% include 'icon_see.html' %}
+                                        {% else %}
+                                            {% include 'icon_see_no.html' %}
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-left">
+                                        <a href="{{url_for('bp_hurl.hurl_read', hurl_id=hurl.id)}}">
+                                            {{hurl.name}}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                You haven't made any hurls yet. To do so, you can visit the <a href="{{url_for('bp_hurl.hurl_create')}}" class="font_color_highlight">New Hurl</a> page.
+            {% endif %}
+
+        </div>
+    </div>
+
+    {% include 'hurl_delete_script.html' %}
+
+{% endblock %}

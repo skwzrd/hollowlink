@@ -1,0 +1,19 @@
+<script>
+    function delete_post(clicked_button, hurl_id) {
+        if (confirm(`Are you sure you want to delete hurl #${hurl_id}?`)) {
+            fetch(`/hurl_delete/${hurl_id}`, {
+                method: 'DELETE',
+            })
+                .then(() => {
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    alert(`Unable to delete hurl.`);
+                    alert(error);
+                });
+        }
+        else {
+            e.preventDefault();
+        }
+    }
+</script>

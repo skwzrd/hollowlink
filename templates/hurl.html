@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="mt-2 card">
+        <div class="card-header">
+            <div class="d-flex">
+                <h3 class="container mt-2">{{hurl.name}}</h3>
+                <div class="container">
+                    <div class="d-flex justify-content-end">
+                        {% include 'hurl_edit_link.html' %}
+                        {% include 'hurl_delete_button.html' %}
+                    </div>
+                </div>
+            </div>
+            {% include 'hurl_copy.html' %}
+        </div>
+        {% include 'hurl_delete_script.html' %}
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table">
+                    {% if visits %}
+                        <thead>
+                            <tr>
+                                <th>Timestamp UTC</th>
+                                <th>IP</th>
+                                <th>Remote</th>
+                                <th>Referrer</th>
+                                <th>User Agent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for visit in visits %}
+                                <tr>
+                                    <td>{{visit.start_datetime_utc.strftime('%Y-%m-%d %H:%M')}}</td>
+                                    <td>{{visit.x_forwarded_for}}</td>
+                                    <td>{{visit.remote_addr}}</td>
+                                    <td>{{visit.referrer}}</td>
+                                    <td>{{visit.user_agent}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    {% else %}
+                        No visits to report yet.
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

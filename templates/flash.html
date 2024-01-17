@@ -1,0 +1,22 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+
+      {% if category in ['warning'] %}
+        {% set font_color = 'black' %}
+      {% else %}
+        {% set font_color = 'white' %}
+      {% endif %}
+
+      {% if not category or category == 'message' %}
+        {% set category = 'dark' %}
+      {% endif %}
+
+      <div id="flash" class="mt-2">
+        <div class="p-2 rounded overflow-hidden bg-{{category}} hstack">
+          <div style="color: {{font_color}} !important;">{{ message }}</div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}

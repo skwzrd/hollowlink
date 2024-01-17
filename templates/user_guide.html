@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="card">
+        <div class="card-header">
+            User Guide
+        </div>
+        <div class="card-body">            
+            <h3>Table of Contents</h3>
+            <ul class="mt-2">
+                {% for section in CONSTS.user_guide %}
+                    <li><a href="#{{section['header']}}" class="">{{section['header']}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    {% for section in CONSTS.user_guide %}
+        <div id="{{section['header']}}" class="mt-2 card">
+            <div class="card-header"><a href="#{{section['header']}}" class="text-info"><h4 class="pt-2">{{ section['header'] | safe }}</h4></a></div>
+            <div class="card-body">
+
+                {% if 'info' in section %}
+                    {{ section['info'] | safe }}
+                {% endif %}
+
+                {% if 'sending' in section %}
+                <h4>Sending</h4>
+                <div class="container">
+                    {{ section['sending'] | safe }}
+                </div>
+                {% endif %}
+                
+                {% if 'tracking' in section %}
+                <h4>Tracking</h4>
+                <div class="container">
+                    {{ section['tracking'] | safe }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

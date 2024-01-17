@@ -1,0 +1,71 @@
+<div class="row">
+  <a href="{{CONSTS.site_url}}"><img id="logo" style="max-width: 250px;" class="d-block mx-auto rounded" src="{{CONSTS.site_logo_url}}" /></a>
+</div>
+
+<nav class="rounded navbar navbar-expand-sm">
+
+  <div class="d-flex flex-wrap">
+
+    {% if logged_in %}
+      <div class="dropdown">
+        <button class="btn dropdown-toggle ms-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          HollowLink
+        </button>
+        <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="{{ url_for('index') }}">About</a></li>
+          <li><a class="dropdown-item" href="{{ url_for('user_guide') }}">User Guide</a></li>
+          <li><a class="dropdown-item" href="{{ url_for('index') + '#faq' }}">FAQ</a></li>
+          <li><a class="dropdown-item" href="{{ url_for('index') + '#contact' }}">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="dropdown">
+        <button class="btn dropdown-toggle ms-2" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
+          Hurl
+        </button>
+        <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton4">
+          <li><a class="dropdown-item" href="{{ url_for('bp_hurl.hurl_list') }}">Hurls</a></li>
+          <li><a class="dropdown-item" href="{{ url_for('bp_hurl.hurl_create') }}">New Hurl</a></li>
+        </ul>
+      </div>
+
+      {% if is_admin %}
+        <div class="dropdown">
+          <button class="btn dropdown-toggle ms-2" type="button" id="dropdownMenuButton5" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+            <li><a class="dropdown-item" href="{{ url_for('bp_admin.admin_users') }}">Users</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('bp_admin.admin_contacts') }}">Contacts</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('bp_admin.admin_hurls') }}">Hurls</a></li>
+          </ul>
+        </div>
+      {% endif %}
+
+      <div class="dropdown">
+        <button class="btn dropdown-toggle ms-2" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+          Profile
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+          <li><a class="dropdown-item" href="{{ url_for('bp_user.user') }}">View/Edit</a></li>
+          <li><a class="dropdown-item" href="{{ url_for('bp_auth.logout') }}">Logout</a></li>
+        </ul>
+      </div>
+
+    {% else %}
+      <a class="btn" href="{{ url_for('index') }}">About</a>
+      <a class="btn" href="{{ url_for('user_guide') }}">User Guide</a>
+
+      <div class="dropdown">
+
+        <button class="btn dropdown-toggle ms-2" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+          Account
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+          <li><a class="dropdown-item" href="{{ url_for('bp_auth.login') }}">Login</a></li>
+          <li><a class="dropdown-item" href="{{ url_for('bp_user.user_create') }}">Create</a></li>
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</nav>

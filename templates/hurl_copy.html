@@ -1,0 +1,24 @@
+<div class="container overflow-scroll mt-2">
+    <table class="table table-borderless table-primary rounded-3 overflow-hidden">
+        <tbody>
+            <td class="text-center align-middle col-1">
+                <button class="btn btn-primary" onclick="copyToClipboard()">{% include 'icon_copy.html' %}</button>
+            </td>
+            <td class="text-left align-middle col-11">
+                <h6 id="copy_url" class="pt-2">{{CONSTS.site_url}}{{hurl.url}}</h6>
+            </td>
+        </tbody>
+    </table>
+</div>
+<script>
+    function copyToClipboard() {
+        const copy_url_text = document.getElementById('copy_url');
+        const range = document.createRange();
+        range.selectNode(copy_url_text);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+    }
+</script>
